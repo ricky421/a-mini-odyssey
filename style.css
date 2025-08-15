@@ -192,6 +192,14 @@ footer {
     margin-bottom: 20px;
 }
 
+.article-content h4 {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #222;
+    margin: 25px 0 15px 0;
+    font-family: Times, serif;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     header {
@@ -215,10 +223,16 @@ footer {
     }
 }
 
-.article-image {
+.article-content img {
     width: 100%;
+    max-width: 100%;
     height: auto;
+    display: block;
     margin-bottom: 20px;
+}
+
+.article-image {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    object-fit: contain;
 }
