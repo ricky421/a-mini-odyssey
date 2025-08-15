@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Satdhruti Paul</title>
+</head>
+<body>
+    <header>
+        <h1>Satdhruti Paul</h1>
+        <img src="assets/life_profile_pic.jpeg" alt="Profile Picture" class="profile-pic" id="profile-pic">
+    </header>
+
+    <main>
+        <div class="about-section">
+            <p>
+                Welcome to my corner of the internet. I'm currently a software engineer at Postman, 
+                and previously worked at Slice. I spend my days building features across distributed systems 
+                and my languages of choice are Java, JavaScript, and Golang.
+            </p>
+            <p>
+                I love travelling to experience different cultures, 
+                and I love trekking as it's a challenge and you meet great people along the way. 
+                I have been playing games since the age of Claw, Miniclip and PSP UMD discs, 
+                and I've consumed so many anime, manga and light novels I've lost count.. 
+                I believe life is all about experiencing new things, 
+                trying to be the best version of yourself and sharing your happiness with others.
+            </p>
+        </div>
+
+        <nav class="sections">
+            <ul>
+                <li><a href="#" onclick="return showSection('tech')" id="tech-link">Tech</a> - My digital thoughts</li>
+                <li><a href="#" onclick="return showSection('life')" id="life-link">Life</a> - My analog adventures</li>
+            </ul>
+        </nav>
+
+        <div class="content" id="content">
+            <div class="section" id="tech-section" style="display: none;">
+                <h2>Tech</h2>
+                <p>Things I've stumbled across, created and learned in my career:</p>
+                <ul></ul>
+            </div>
+
+            <div class="section" id="life-section" style="display: none;">
+                <h2>Life</h2>
+                <p>Personal experiences, travel pictures and lessons learned:</p>
+                <ul></ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p><a href="mailto:incognito12456@gmail.com">Contact Me</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
