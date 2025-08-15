@@ -14,8 +14,142 @@
                 <h3 class="article-header">How to Cross The SDE 1 to SDE 2 Gap (backend version)</h3>
                 <p class="article-date">Published: 24th Jul, 2025</p>
                 <div class="article-content">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <h4>Step 1: Start Reading Up</h4>
+                    <img src="../assets/cross_sde1/tom_jerry_reading.jpeg" alt="Step 1" class="article-image">
+                    <p>Right, so since I've recently hopped jobs I guess I'm qualified to explain this topic. 
+                        As a backend engineer at the SDE1 level, you have probably built a few apis/features, 
+                        made a few tables and databases, and dealt with infra stuff here and there, 
+                        but now you are motivated to take that next step in actually being the person that 
+                        has the confidence to fully implement a big feature/product part. No more taking orders from seniors, 
+                        you have to be the senior and take part in technical discussions and design meetings, 
+                        with devs from cross teams and with PMs, EMs, and you have to finalize the requirements 
+                        (albeit iteratively).
+                    </p>
+                    <p>    
+                        This is the point where you as a developer have to start reading up on the topics 
+                        that you are not aware of. You hear people talk about 2-Phase Commit, and Temporal, and
+                        you're left in a daze, your next action item should be to read up on these topics, from 
+                        official documentations, or from well known blogs.
+                    </p>
+                    <br>
+                    <p>
+                        I would personally recommend being aware of these following technologies at the very least,
+                        Redis (Caching), AWS Elasticache to maintain redis clusters, 
+                        <a href="https://docs.temporal.io/develop/java/core-application#develop-workflows" 
+                        target="_blank">Temporal Docs for a basic understanding</a>, Postgres, MSSQL, MongoDB, 
+                        and a basic find/select query for these languages, Prometheus, Grafana/APM/NewRelic, 
+                        Kibana, or Loki, which are commonly used for logging and monitoring, what is Docker (kodekloud is a great resource),
+                        <a href="https://kodekloud.com/courses/docker-for-the-absolute-beginner" target="_blank">
+                            how would you dockerize a simple project</a>? Difference between pods and containers in kubernetes,
+                        difference between K8s and ECS, what are EC2 instances? What is load testing? 
+                        (commonly used JMeter, <a href="https://k6.io" target="_blank">k6.io</a>), what is garbage collection? These are a good starting point, 
+                        and as you become more inquisitive you will pick up more things easily.
+                    </p>
+                    
+                    <h4>Step 2: Essential Resources for Interviews and Career Growth</h4>
+                    <img src="../assets/cross_sde1/dive-into-money.gif" alt="Step 2" class="article-image">
+                    <p>
+                        Now let's dive into the essentials (haha, get it?) for SDE2 interviews, 
+                        and the resources that helped me massively in my preparation.
+                        The topics are - DSA (Data Structures and Algorithms), HLD (System Design) 
+                        and LLD (Low Level Design, Coding Design Patterns).
+                    </p>
+
+                    <p>
+                        For DSA, I would recommend these resources:
+                        <ul>
+                            <li>
+                                Learn fundamentals,
+                                <a href="https://www.geeksforgeeks.org/dsa/complete-roadmap-to-learn-dsa-from-scratch/" target="_blank">
+                                     like stacks, heaps, queues, trees, graphs, linked lists, binary search, quicksort, mergesort, etc.
+                                </a>
+                            </li>
+                            <li>
+                                Take U Forward's Website is an absolute goldmine.
+                                <a href="https://takeuforward.org/graph/striver-graph-series-top-graph-interview-questions" target="_blank">
+                                    Graph Series
+                                </a>,
+                                <a href="https://takeuforward.org/dynamic-programming/striver-dp-series-dynamic-programming-problems" target="_blank">
+                                    DP Series
+                                </a>, 
+                                <a href="https://takeuforward.org/array/top-array-interview-questions-structured-path-with-video-solutions" target="_blank">
+                                    Array Series
+                                </a>
+                            </li>
+                            <li> 
+                                Practice with Leetcode's essential problem set - <a href="https://leetcode.com/problem-list/oizxjoit/" target="_blank">Blind 75</a>
+                            </li>
+                            <li>
+                                Complete WorkAtTech's problem set - <a href="https://workat.tech/problem-solving/practice/topics" target="_blank">Problem Solving</a>
+                            </li>
+                        </ul>
+                    </p>
+                    <p>
+                        Now let's get into system design, the good stuff (and very essential for gaslighting people /j).
+                        <ul>
+                            <li>
+                                System Design Interview by Alex Xu - <a href="https://www.amazon.com/System-Design-Interview-insiders-Second/dp/B08CMF2CQF" target="_blank">Book</a>
+                            </li>
+                            <li>
+                                After the above is done, and you want more confidence/understanding, first 350 pages of Designing Data Intensive Applications by Martin Kleppmann - <a href="https://www.amazon.com/Designing-Data-Intensive-Applications-Reliable-Maintainable/dp/1449373321" target="_blank">Book</a>
+                            </li>
+                            <li>
+                                HelloInterview's playlist - <a href="https://www.youtube.com/watch?v=fhdPyoO6aXI" target="_blank">Youtube</a>, very essential for interviews.
+                            </li>
+                            <li>
+                                CodeKarle - <a href="https://www.youtube.com/watch?v=9-hjBGxuiEs&ab_channel=codeKarle" target="_blank">Youtube</a>, He has some good ideas which I feel might get a little extensive for SDE2 sometimes, but it's a good knowledge source.
+                            </li>
+                            <li>
+                                <a href="https://chatgpt.com" target="_blank">ChatGPT</a> - This is also surprisingly good, ask it for problems which people come across in interviews, for the companies you get selected for, and try to first think of a solution and then discuss and ask it for solutions.
+                            </li>
+                        </ul>
+                    </p>
+                    <p>
+                        And finally, Low-Level Design, where you get to know if you're good enough.
+                        What is essential in this section is that you have utmost confidence in your language (Java, Python, C++).
+                        Can you make a project from scratch and create a working API endpoint in 5-10 minutes? You are ready.
+                        While Java is the cleanest looking (imo) for Object Oriented Programming, and the one I use, if some companies 
+                        want you to use working endpoints and integrate with external stuff on the fly, I would suggest Python's fastify framework.
+                        <ul>
+                            <li>
+                                Understand the most common design patterns - 
+                                <a href="https://www.digitalocean.com/community/tutorials/java-singleton-design-pattern-best-practices-examples" target="_blank">Singleton</a>, 
+                                <a href="https://www.digitalocean.com/community/tutorials/factory-design-pattern-in-java" target="_blank">Factory</a>, 
+                                <a href="https://www.digitalocean.com/community/tutorials/strategy-design-pattern-in-java-example-tutorial" target="_blank">Strategy</a>, 
+                                <a href="https://www.digitalocean.com/community/tutorials/builder-design-pattern-in-java" target="_blank">Builder</a>, 
+                                <a href="https://devcookies.medium.com/observer-design-pattern-a-complete-guide-with-examples-ec40648749ff" target="_blank">Observer</a>. These should be your go-to design patterns.
+                            </li>
+                            <li>
+                                Solving Top 10 LLD Questions - <a href="https://medium.com/@prashant558908/solving-top-10-low-level-design-lld-interview-questions-in-2024-302b6177c869" target="_blank">Medium Article</a>, go to the codezym links and try to solve the problems locally.
+                                If you are stuck for more than 1-2 hrs, don't feel bad in using ChatGPT. I used it frequently ;).
+                            </li>
+                            <li>
+                                Small thing to keep in mind, if a service/repository is throwing error, you should throw error in your api endpoint, 500 - Internal Server Error, and not return 200 - Success. (Not always but in most cases).
+                            </li>
+                            <li>
+                                WorkAtTech's LLD Series - <a href="https://workat.tech/machine-coding" target="_blank">Machine Coding</a> 
+                            </li>
+                        </ul>
+                    </p>
+                    <h4>Step 3: Lessons from my experiences</h4>
+                    <img src="../assets/cross_sde1/tired_boss.jpg" alt="Step 3" class="article-image">
+                    <ul>
+                        <li>Keep talking to the interviewer during DSA and LLD rounds, ask questions if you have doubts, don't keep thinking for yourself, learning to clearly ask your question is a very essential skill. 
+                            After your doubts are done, and you have a vague/good idea on how to implement things you should start coding so as not to waste time. Sometimes when a section of your code is 
+                            done you will explain that you are going to work on the next section and so on, (doesn't mean you should say okay I have taken input now I will print input, it should be like you have 
+                            made BFS function now you will add numbering to the levels to get the earliest point in maze, etc.) </li>
+                        <li>Some interviewers will want you to talk with them so they can help, some will be busy with their own stuff/want to see your thinking style 
+                            so they will want you to code fast or ask less questions, understand the mood of the interviewer :)</li>
+                        <li>During System Design interviews, I would suggest sticking to HelloInterview's approach as it's the best I've seen, 
+                            but always check with interviewer after you have designed/written down some major parts, if what you have done is OK and can you proceed or does 
+                            he/she want more explanations or does he/she want to discuss more edge cases. For example I was grilled on the 
+                            API responses that would be returned even before I could explain the database entities.</li>
+                        <li>You are applying for an SDE2 role where there will be lots of talking and discussions, don't be afraid to discuss things during interview :)</li>
+                    </ul>
+                    <br>
+                    <p>
+                        That's all folks! Keep applying, and good luck! (PS: I failed almost 9 interviews before I got my first offer)
+                    </p>
                 </div>
             </article>
         </main>
