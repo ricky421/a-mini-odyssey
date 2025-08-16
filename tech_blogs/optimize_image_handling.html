@@ -4,18 +4,107 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../style.css">
-        <title>Optimize Image Handling in your personal website</title>
+        <title>Optimize Image Handling in your Personal Website</title>
     </head>
     <body>
         <div id="header-container"></div>
         
         <main>
             <article class="blog-article">
-                <h3 class="article-header">Optimize Image Handling in your personal website</h3>
+                <h3 class="article-header">Optimize Image Handling in your Personal Website</h3>
                 <p class="article-date">Published: 15th Aug, 2025</p>
                 <div class="article-content">
-                    <img src="../assets/sike.jpg" alt="Sike!" class="article-image">
-                    <p>Work in Progress -- Coming Soon</p>
+                    <p>This website is a very simple setup, some HTML, client-side JS logic, and CSS, hosted on Github Pages, 
+                        and a domain from Cloudflare for $10 a year. The only issue is that there are too many images and memes 
+                        with good quality that I want to keep here.</p>
+                    <p>How do I optimize this? This begs the question, why do you want to optimize this? 
+                        Did you notice performance issues? How do you check performance? Thankfully, there are tools for this.</p>
+                    <p>1. Google Inspect -> Performance Tab</p>
+                    <img src="../assets/optimize_image/PerformanceImageDownload.webp" alt="Performance_Insights" class="article-image" fetchpriority="high">
+                    <p>2. PageSpeed Insights (<a href="https://pagespeed.web.dev/" target="_blank">Link</a>)</p>
+                    <img src="../assets/optimize_image/PageSpeedInsights.webp" alt="PageSpeedInsights" class="article-image">
+                    <p>Why does the image download in 7.49ms when seen in Google Performance insights but it's 
+                        showing metrics in the range of seconds in PageSpeed Insights? This is because performance insight is using my local internet speed of 200+Mbps, 
+                        but PageSpeed is simulating Slow 4G Throttling speeds around 1Mbps.</p>
+                    <p>3. Suggestions I will be de-prioritizing</p>
+                    <ul>
+                        <li>
+                            srcset attributes in img tag for multiple images corresponding to multiple screen sizes 
+                            - I don't want to keep multiple files for a single image.
+                        </li>
+                        <li>
+                            loading="lazy" - Both the above tools are against this for the first image in the page 
+                            (as it needs high fetch priority), I will consider this for the other images down the page later.
+                        </li>
+                        <li>
+                            There was also another LCP issue due to a cloudflare script running before the rendering, a 
+                            "cloudflare-static/email-decode.min.js" script, leading to around 100-150ms delay, 
+                            but I will not be disabling this else my email will be visible in the source code and will get spammed.
+                        </li>
+                    </ul>
+                    <h3 class="article-header">Phase 1. PageSpeed Insights Analysis</h3>
+                    <p>Let's start with the simple ones first, and then we'll move on to the more complicated ones.</p>
+                    <p>1. LCP Request Discovery</p>
+                    <img src="../assets/optimize_image/LCPRequestDiscovery.webp" alt="LCPRequestDiscovery" class="article-image">
+                    <p>What is LCP? It stands for Largest Contentful Paint. What it actually means is when you open up a website,
+                        what is the time it takes to see the largest image in the initial area that you can see. 
+                        In my case it would be the first image in the page.</p>
+                    <p>I will be adding fetchpriority="high" according to the suggestion.</p>
+                    <p>2. Use Efficient Cache Lifetimes</p>
+                    <img src="../assets/optimize_image/EfficientCacheLifetimes.webp" alt="EfficientCacheLifetimes" class="article-image">
+                    <p>You might be thinking, "Hey, 4 hours caching seems pretty good?", but no, 
+                        <a href="https://developer.chrome.com/docs/lighthouse/performance/uses-long-cache-ttl" target="_blank">Chrome Dev Blog</a> 
+                        recommends a TTL of 1 year for static images that are not expected to change often. While there is a risk of users not seeing updated images, 
+                        I won't be updating the images once I've posted a blog, so it's all good for my scenario.
+                    </p>
+                    <p>I will be setting Edge Cache TTL to 1 year and Browser Cache TTL to 1 year, 
+                        according to the dev blog, via Caching Rules in Cloudflare (can be saved as a draft rule and not enabled).</p>
+                    <img src="../assets/optimize_image/CloudflareCacheRules.webp" alt="CloudflareCachingRules" class="article-image">
+                    <p>3. Improve Image Delivery</p>
+                    <img src="../assets/optimize_image/ImproveImageDelivery.webp" alt="ImproveImageDelivery" class="article-image">
+                    <p>Some of the things I can see at first glance are:</p>
+                    <ul>
+                        <li>
+                            NepalMid.jpeg has a file size of 2.2MB.
+                        </li>
+                        <li>
+                            The file dimensions are 2560x1706 but the displayed dimensions on phone is 372x248 
+                            and on desktop is 650x433.
+                        </li>
+                        <li>
+                            I can change the image from jpeg to webp format.
+                        </li>
+                    </ul>
+                    <h3 class="article-header">Phase 2. Image Compression</h3>
+                    <p>The goal for this phase will be to get a bash command that can resize the image, and convert to webp, 
+                        so that I can use this on all new images/image_folders.</p>
+                    <img src="../assets/optimize_image/cat_typing.gif" alt="CatTyping" class="article-image">
+                    <p>We will only be using one tool for this.</p>
+                    <p>
+                            Imagemagick - For resizing and converting to webp. The below command essentially resizes large images into 1024x683 size 
+                            and converts to webp with 80% quality, while maintaining aspect ratio. We are not converting to 650x433 directly as there is too 
+                            much data loss (from experimentation), so this is the halfway point for my project.
+                    </p>
+                    <pre><code>brew install imagemagick
+magick NepalMid.jpeg -resize 1024x683 -quality 80 NepalMidNew.webp</code></pre>
+                    <p>This results in reduction from 2.2MB to 200KB.</p>
+                    <p>
+                            VirtuBox - img-optimize <a href="https://github.com/VirtuBox/img-optimize" target="_blank">repository</a> - Not used.
+                    </p>
+                    <pre><code>img-optimize --all --path ./folder_name</code></pre>
+                    <p>I had planned on combining this with Imagemagick but there is no effect on the final size, 
+                        i.e, initial_image + magick + img-optimize = initial_image + magick.</p>
+                    <p>There could be scope of improvement here, considering this youtube video by 
+                        <a href="https://www.youtube.com/watch?v=Fq3HBk6s%20wuQ&ab_channel=ChrisTitusTech" target="_blank">Chris Titus.</a></p>
+                    
+                    <p>Then the final script that comes out is: </p>
+                    <pre><code>for file in *.jpeg *.png *.JPG *.JPEG *.PNG; do
+    [ -e "$file" ] || continue
+    magick "$file" -resize 1024x683 -quality 80 "$(basename "${file%.*}").webp" && rm "$file"
+done</code></pre>
+                    <p>Run this in the folder with your images to create new webp images and delete old heavier images 
+                        (remove unnecessary formats from script as needed).</p>
+                    <h3 class="article-header">Results</h3>
                 </div>
             </article>
         </main>

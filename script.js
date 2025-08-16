@@ -1,7 +1,7 @@
 // Article data
 const techArticles = [
     { text: "How to Cross The SDE 1 to SDE 2 Gap (backend version)", filename: "cross_sde1_sde2.html", date: "24th Jul, 2025" },
-    { text: "Optimize Image Handling in your personal website", filename: "optimize_image_handling.html", date: "15th Aug, 2025" },
+    { text: "Optimize Image Handling in your Personal Website", filename: "optimize_image_handling.html", date: "15th Aug, 2025" },
 ];
 
 const lifeArticles = [
